@@ -32,4 +32,3 @@ model = word2vec.Word2Vec(LineSentence(seg_word_path), size=200, workers=8,min_c
 model.wv.most_similar(['奔驰'], topn=10)
 save_modelk_path=r'C:\Users\william.han\Downloads\NLP\data\word2vec.model'
 model.save(save_modelk_path)
-11111
