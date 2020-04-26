@@ -11,10 +11,10 @@ import jieba
 import numpy as np
 from multiprocessing import cpu_count, Pool
 
-Train_file_path = r'C:\Users\william.han\Downloads\NLP\data\AutoMaster_TrainSet.csv'
-Test_file_path = r'C:\Users\william.han\Downloads\NLP\data\AutoMaster_TestSet.csv'
-Stop_word_path=  r'C:\Users\william.han\Downloads\NLP\data\stopwords\哈工大停用词表.txt'
-user_dict_path = r'C:\Users\william.han\Downloads\NLP\data\user_dict.txt'
+Train_file_path = r'/home/william/NLP/data/AutoMaster_TrainSet.csv'
+Test_file_path = r'/home/william/NLP/data/AutoMaster_TestSet.csv'
+Stop_word_path=  r'/home/william/NLP/data/stopwords/哈工大停用词表.txt'
+user_dict_path = r'/home/william/NLP/data/user_dict.txt'
 
 ##load train and test data
 
@@ -102,8 +102,8 @@ def parallelize(df, fn,cores,partitions):
 
 train_data = parallelize(train_data,df_proc,cores,partitions)
 ## save the data
-train_data.to_csv(r'C:\Users\william.han\Downloads\NLP\data\train_seg_data.csv', index=None, header=True)
-test_data.to_csv(r'C:\Users\william.han\Downloads\NLP\data\test_seg_data.csv', index=None, header=True)
+train_data.to_csv(r'/home/william/NLP/data/train_seg_data.csv', index=None, header=True)
+test_data.to_csv(r'/home/william/NLP/data/test_seg_data.csv', index=None, header=True)
 
 
 #build the vocab
@@ -111,6 +111,6 @@ train_data['merged'] = train_data[['Question', 'Dialogue','Report']].apply(lambd
 test_data['merged'] = test_data[['Question', 'Dialogue']].apply(lambda x:' '.join(x), axis=1)
 
 df_merge = pd.concat([train_data[['merged']],test_data[['merged']]], axis=0)
-df_merge.to_csv(r'C:\Users\william.han\Downloads\NLP\data\merged_train_test_seg_data.csv',index=None,header=False)
+df_merge.to_csv(r'/home/william/NLP/data/merged_train_test_seg_data.csv',index=None,header=False)
 
 voca = set(' '.join(df_merge['merged']).split())
